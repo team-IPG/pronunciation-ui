@@ -1,0 +1,38 @@
+html{
+    height: 100hv; 
+    position: relative;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    height: 100vh;
+    margin: 0px; 
+    padding: 0px;
+    background-color: aliceblue;
+}
+
+header {
+    max-width: 100%;
+    background-color: gainsboro;
+    margin-bottom: 40px;
+    position: sticky;
+    top: 0;
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1em;
+    column-gap: 1em;
+    margin: auto;
+    position: fixed;
+    justify-content: center;
+}
+
+form {
+    width: 50%;
+    margin: auto;
+}
+
+

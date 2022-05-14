@@ -16,11 +16,11 @@ const LogIn = (props) => {
       setrole(username);
       login();
       setInvalid(false);
-      history.push("/");
+      history.push("/get-started");
     } else if (username === "user" && password === "user") {
       setrole(username);
       login();
-      history.push("/");
+      history.push("/get-started");
     } else {
       setInvalid(true);
     }

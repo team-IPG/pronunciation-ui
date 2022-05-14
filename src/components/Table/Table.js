@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Overlay } from "../Overlay/Overlay";
 
 export const Table = (props) => {
   const { rows } = props;
@@ -27,7 +28,14 @@ export const Table = (props) => {
                 <td>{name}</td>
                 <td>{entry.name_id}</td>
                 <td>
-                  <button className="btn btn-warning">Edit</button>
+                  <button
+                    className="btn btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#edit-word"
+                    data-bs-whatever="@mdo"
+                  >
+                    Edit
+                  </button>
                 </td>
                 <td>
                   <button className="btn btn-info">Play it!</button>
@@ -41,6 +49,7 @@ export const Table = (props) => {
           )}
         </tbody>
       </table>
+      <Overlay />
     </div>
   );
 };

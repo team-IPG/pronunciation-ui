@@ -10,7 +10,7 @@ const Home = () => {
         }, 
         {
             name: "Edit and provide customer pronunciations", 
-            description: "Our app enable employees to override standard pronunciations and provide 'custom' pronunciations for cases where employee prefers pronunciations that differs from teh standard solution", 
+            description: "Our app enable employees to override standard pronunciations and provide 'custom' pronunciations for cases where employee prefers pronunciations that differs from the standard solution", 
             auth: true
         }
     ]

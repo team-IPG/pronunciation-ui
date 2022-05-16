@@ -37,7 +37,6 @@ export const EditOverlay = (props) => {
 
   useEffect(() => {
     if(isSave){
-      console.log("payload: ", payload);
       updateNameById(payload); 
     }
   },[isSave, payload]); 
@@ -130,7 +129,7 @@ export const EditOverlay = (props) => {
             <PlayAudio
               type="success"
               label="Test"
-              name={row.firstName}
+              name={row.preferredName}
             />
             <button 
               className="btn btn-outline-secondary" 

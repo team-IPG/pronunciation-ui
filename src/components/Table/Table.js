@@ -11,9 +11,9 @@ export const Table = (props) => {
     setCurrentRow(entry);
   };
 
-  useEffect(() => {
-    // updateNameById({active: !currentRow.active, ...currentRow})
-  },[currentRow])
+  // useEffect(() => {
+  //   // updateNameById({active: !currentRow.active, ...currentRow})
+  // },[currentRow])
 
   return (
     <div className="mt-5">
@@ -28,7 +28,7 @@ export const Table = (props) => {
             <th scope="col">Play</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="table-body">
           {rows.length > 0 &&
             Object.values(rows).map((entry, key) => (
               <tr key={key}>
@@ -44,12 +44,13 @@ export const Table = (props) => {
                 <td>{entry.lastName}</td>
                 <td>{entry.preferredName}</td>
                 <td>
-                  <EditOverlay row={entry} />
+                  <EditOverlay
+                    row={entry} />
                 </td>
                 <td>
                   <PlayAudio 
                     type="outline-info" 
-                    name={entry.firstName} />
+                    name={entry.preferredName} />
                 </td>
               </tr>
             ))}

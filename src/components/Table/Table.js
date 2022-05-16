@@ -20,7 +20,7 @@ export const Table = (props) => {
       <table className="table mt-5">
         <thead>
           <tr>
-            <th scope="col">Deactivate</th>
+            <th scope="col">Status</th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">Pronunciation</th>

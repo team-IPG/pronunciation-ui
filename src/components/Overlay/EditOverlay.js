@@ -1,16 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import Overlay from "react-overlay-component";
-import resources from "../../resources/resources.json";
 import { PlayAudio } from "../PlayAudio/PlayAudio";
 import { updateNameById } from "../../apis/name-apis/name-services"; 
+import resources from "../../resources/resources.json";
 
 export const EditOverlay = (props) => {
   const [isOpen, setOverlay] = useState(false);
   const [payload, setPayload] = useState({});
   const [isSave, setIsSave] = useState(false); 
   const preferredNameRef = useRef(""); 
-  const countryRef = useRef("");
-  const genderRef = useRef("");
+  const presetRef = useRef("");
   const speedRef = useRef("");
 
   const { row } = props;
@@ -18,10 +17,6 @@ export const EditOverlay = (props) => {
   const closeOverlay = () => {
     setOverlay(false);  
   };
-
-  const handleModalOnChange = (e) => {
-    console.log(e.target.name);
-  }
 
   const handleCancelButton = () => {
     setOverlay(false);  
@@ -32,7 +27,7 @@ export const EditOverlay = (props) => {
         firstName: row.firstName, 
         lastName: row.lastName, 
         preferredName: preferredNameRef.current.value, 
-        preferredPreset: countryRef.current.value, 
+        preferredPreset: presetRef.current.value, 
         preferredSpeed: +speedRef.current.value, 
         active: row.active
       }
@@ -42,6 +37,7 @@ export const EditOverlay = (props) => {
 
   useEffect(() => {
     if(isSave){
+      console.log("payload: ", payload);
       updateNameById(payload); 
     }
   },[isSave, payload]); 
@@ -66,7 +62,7 @@ export const EditOverlay = (props) => {
           <div className="input-group mb-4">
             <div className="input-group-append">
               <span className="input-group-text" id="basic-addon2">
-                Preferred Pronunciation:
+                Preferred name:
               </span>
             </div>
             <input
@@ -75,7 +71,6 @@ export const EditOverlay = (props) => {
               type="text"
               className="form-control"
               placeholder={`${row.preferredName}`} 
-              onChange={handleModalOnChange}
             />
           </div>
           <div className="input-group mb-4">
@@ -83,42 +78,20 @@ export const EditOverlay = (props) => {
               <label 
                 className="input-group-text" 
                 htmlFor="select-country">
-                Select Country:
+                Select Preset:
               </label>
             </div>
             <select 
-              ref={countryRef} 
+              ref={presetRef} 
               className="form-control" 
               name="select-country" 
               id="select-country" 
-              onChange={handleModalOnChange}>
+              >
               <option>Select Dropdown...</option>
-              {resources.countries &&
-                resources["countries"].map((entry, key) => (
-                  <option key={key} value={entry.code}>
-                    {entry.name}
-                  </option>
-                ))}
-            </select>
-          </div>
-          <div className="input-group mb-4">
-            <div className="input-group-append">
-              <label 
-                className="input-group-text" 
-                htmlFor="select-gender">
-                Select Gender:
-              </label>
-            </div>
-            <select 
-              ref={genderRef} 
-              className="form-control" 
-              name="select-gender"
-              id="select-gender">
-              <option>Select Dropdown...</option>
-              {resources.countries &&
-                resources["gender"].map((entry, key) => (
-                  <option key={key} value={entry}>
-                    {entry}
+              {resources &&
+                resources["preferredPreset"].map((entry, key) => (
+                  <option key={key} value={entry.value}>
+                    {entry.key}
                   </option>
                 ))}
             </select>
@@ -135,12 +108,13 @@ export const EditOverlay = (props) => {
               ref={speedRef} 
               className="form-control" 
               name="select-speed"
-              id="select-speed">
+              id="select-speed"
+              >
               <option>Select Dropdown...</option>
-              {resources.countries &&
-                resources["speed"].map((entry, key) => (
-                  <option key={key} value={entry}>
-                    {entry}
+              {resources &&
+                resources["preferredSpeed"].map((entry, key) => (
+                  <option key={key} value={entry.value}>
+                    {entry.key}
                   </option>
                 ))}
             </select>

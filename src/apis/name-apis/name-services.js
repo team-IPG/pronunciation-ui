@@ -26,8 +26,8 @@ export const fetchNameById = async (fun, {firstname, lastname}) => {
     fun((prev) => [{...res}]);
 };
 
-export const updateNameById = async ({firstname, lastname}, content) => {
-    let name = firstname + "-" + lastname;
+export const updateNameById = async (content) => {
+    let name = content.firstName + "-" + content.lastName;
     return await api.post(`/employeePreferences/${name}`, {...content})
     .then((r) => {
     }).catch((err) => {

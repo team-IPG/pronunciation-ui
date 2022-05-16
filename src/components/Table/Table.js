@@ -12,7 +12,7 @@ export const Table = (props) => {
   };
 
   useEffect(() => {
-    updateNameById({active: !currentRow.active, ...currentRow})
+    // updateNameById({active: !currentRow.active, ...currentRow})
   },[currentRow])
 
   return (

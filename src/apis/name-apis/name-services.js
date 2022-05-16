@@ -4,8 +4,7 @@ export const api = axios.create({
   baseURL: "https://name-svc-mh6ib2ntwq-uc.a.run.app",
 });
 
-export const fetchNamesByNames = async (fun, {firstname, lastname}) => {
-  let name = (firstname === "") ? lastname : firstname;
+export const fetchNamesByNames = async (fun, name) => {
   let res = await api.get(`/findEmployee/${name}`)
   .then((r) => {
       return r.data
@@ -16,6 +15,7 @@ export const fetchNamesByNames = async (fun, {firstname, lastname}) => {
 };
 
 export const fetchNameById = async (fun, {firstname, lastname}) => {
+    if(firstname === "" || lastname === "") return; 
     let name = firstname + "-" + lastname;
     let res = await api.get(`/employee/${name}`)
     .then((r) => {
@@ -26,11 +26,14 @@ export const fetchNameById = async (fun, {firstname, lastname}) => {
     fun((prev) => [{...res}]);
 };
 
-export const updateNameById = async (content) => {
-    let name = content.firstName + "-" + content.lastName;
-    await api.post(`/employeePreferences/${name}`, {...content});
+export const updateNameById = async ({firstname, lastname}, content) => {
+    let name = firstname + "-" + lastname;
+    return await api.post(`/employeePreferences/${name}`, {...content})
+    .then((r) => {
+    }).catch((err) => {
+        console.error(err.response.data);
+    });
 };
-
 export const deleteNameById = async (fun, {firstname, lastname}) => {
     let name = firstname + "-" + lastname;
     let res = await api.get(`/employee/${name}`)

@@ -7,21 +7,20 @@ import {
 } from "../../apis/name-apis/name-services";
 
 const GetStarted = () => {
-  const [fullname, setFullname] = useState({});
+  const [fullname, setFullname] = useState("");
   const [names, setNames] = useState([]);
 
-  const { firstname="", lastname=""} = fullname;
-
   useEffect(() => {
-        if (firstname !== "" && lastname !== "") {
-          fetchNameById(setNames, fullname);
-        } else if(firstname !== "" || lastname !== "") {
-          fetchNamesByNames(setNames, fullname); 
+        if(fullname !== "" && fullname.includes(" ")){
+          let firstname = fullname.split(" ")[0]; 
+          let lastname = fullname.split(" ")[1];
+          fetchNameById(setNames, {firstname, lastname})
+        }else if(fullname !== "" && !fullname.includes(" ")){
+          fetchNamesByNames(setNames, fullname)
         }else{
           setNames((prev) => []);
-          return;
         }
-  }, [firstname, lastname, fullname]);
+  }, [fullname]);
 
   const handleInfo = (data) => {
     setFullname(data);

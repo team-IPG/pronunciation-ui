@@ -1,55 +1,63 @@
-import React, { useEffect } from "react";
-import { Overlay } from "../Overlay/Overlay";
+import React, { useState, useEffect } from "react";
+import { EditOverlay } from "../Overlay/EditOverlay";
+import { PlayAudio } from "../PlayAudio/PlayAudio";
+import { updateNameById } from "../../apis/name-apis/name-services"
 
 export const Table = (props) => {
+  const [currentRow, setCurrentRow] = useState([]);
   const { rows } = props;
-  let name = rows[0];
-  let details = rows[1];
+
+  const handleDeactivate = (entry) => {
+    setCurrentRow(entry);
+  };
+
+  useEffect(() => {
+    updateNameById({active: !currentRow.active, ...currentRow})
+  },[currentRow])
 
   return (
     <div className="mt-5">
-      <table className="table">
+      <table className="table mt-5">
         <thead>
           <tr>
-            <th scope="col">Opt out</th>
-            <th scope="col">Username</th>
-            <th scope="col">User ID</th>
+            <th scope="col">Deactivate</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Pronunciation</th>
             <th scope="col">Edit</th>
-            <th scope="col">play</th>
+            <th scope="col">Play</th>
           </tr>
         </thead>
         <tbody>
-          {rows.length == 2 ? (
-            Object.values(details).map((entry, key) => (
+          {rows.length > 0 &&
+            Object.values(rows).map((entry, key) => (
               <tr key={key}>
                 <th scope="row">
-                  <button className="btn btn-danger">Deactivate</button>
-                </th>
-                <td>{name}</td>
-                <td>{entry.name_id}</td>
-                <td>
                   <button
-                    className="btn btn-warning"
-                    data-bs-toggle="modal"
-                    data-bs-target="#edit-word"
-                    data-bs-whatever="@mdo"
+                    onClick={() => handleDeactivate(entry)}
+                    className="btn btn-outline-danger"
                   >
-                    Edit
+                   { entry.active ? "Deactivate" : "Activate"}
                   </button>
+                </th>
+                <td>{entry.firstName}</td>
+                <td>{entry.lastName}</td>
+                <td>{entry.preferredName}</td>
+                <td>
+                  <EditOverlay row={entry} />
                 </td>
                 <td>
-                  <button className="btn btn-info">Play it!</button>
+                  <PlayAudio type="outline-info" name={entry.firstName} />
                 </td>
               </tr>
-            ))
-          ) : (
-            <div>
-              <h6>No Results found!</h6>
-            </div>
-          )}
+            ))}
         </tbody>
       </table>
-      <Overlay />
+      {rows.length === 0 && (
+        <div>
+          <h6>No Results Found!</h6>
+        </div>
+      )}
     </div>
   );
 };

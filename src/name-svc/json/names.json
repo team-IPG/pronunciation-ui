@@ -1,22 +1,21 @@
 {
   "status": "Success",
-  "message": {
-    "jorge": [
-      {
-        "name_id": "620",
-        "name": "Jorge",
-        "name_phonetic": "gor-ge",
-        "name_voice_file": "/bucket/recording.mp4"
-      },
-      {
-        "name_id": "7358",
-        "name": "Jorge",
-        "name_phonetic": "kaw-r-hay",
-        "gender": "male",
-        "lang_id": "66",
-        "lang_name": "Spanish",
-        "name_voice_file": "jorge_es"
-      }
-    ]
-  }
+  "message": [
+    {
+      "firstName": "Jose",
+      "lastName": "Aldo",
+      "preferredName": "Ho-say",
+      "preferredPreset": "US",
+      "preferredSpeed": 3,
+      "active": true
+    },
+    {
+      "firstName": "John",
+      "lastName": "Glynn",
+      "preferredName": "johnny",
+      "preferredPreset": "US-ROBOT-1",
+      "preferredSpeed": 4,
+      "active": true
+    }
+  ]
 }

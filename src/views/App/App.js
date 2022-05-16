@@ -22,8 +22,7 @@ const App = () => {
           <Route path="/" exact={true} component={Home} />
           <Route path="/login" exact={true} component={LogIn} />
           <Route path="/get-started">
-            {isLoggedIn && <GetStarted/>}
-            {!isLoggedIn && <Redirect to="/login"/>}
+            {isLoggedIn ? <GetStarted/> : <Home/>}
             </Route> 
         </Switch>
       </main>

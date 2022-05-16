@@ -19,7 +19,7 @@ export const Search = (props) => {
             name="firstname"
             type="search"
             className="form-control"
-            placeholder="Enter Firstname and Lastname"
+            placeholder="Enter Firstname, Lastname, or ID"
           />
         </div>
         <div className="form-outline w-20 ms-4">

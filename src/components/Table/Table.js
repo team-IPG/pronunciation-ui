@@ -47,7 +47,9 @@ export const Table = (props) => {
                   <EditOverlay row={entry} />
                 </td>
                 <td>
-                  <PlayAudio type="outline-info" name={entry.firstName} />
+                  <PlayAudio 
+                    type="outline-info" 
+                    name={entry.firstName} />
                 </td>
               </tr>
             ))}

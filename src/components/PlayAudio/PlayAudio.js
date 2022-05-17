@@ -28,8 +28,8 @@ const Player = (name) => {
   return [playing, toggle];
 };
 
-export const PlayAudio = ({ name, type, label }) => {
-  const [playing, toggle] = Player(name);
+export const PlayAudio = ({ name, type, label}) => {
+  const [playing, toggle] = Player(name); 
 
   return (
     <button className={`btn btn-${type}`} onClick={toggle}>

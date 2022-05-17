@@ -11,10 +11,6 @@ export const Table = (props) => {
     setCurrentRow(entry);
   };
 
-  // useEffect(() => {
-  //   // updateNameById({active: !currentRow.active, ...currentRow})
-  // },[currentRow])
-
   return (
     <div className="mt-5">
       <table className="table mt-5">
@@ -50,7 +46,7 @@ export const Table = (props) => {
                 <td>
                   <PlayAudio 
                     type="outline-info" 
-                    name={entry.preferredName} />
+                    name={`${entry.preferredName}?preset=${entry.preferredPreset}&rate=${entry.preferredSpeed}`} />
                 </td>
               </tr>
             ))}

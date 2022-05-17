@@ -43,7 +43,7 @@ export const EditOverlay = (props) => {
       preferredSpeed: +speedRef.current.value,
       active: row.active,
     });
-    setIsSave(true);
+    setIsSave(!isSave);
   };
 
   useEffect(() => {

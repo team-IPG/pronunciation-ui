@@ -19,8 +19,8 @@ export const EditOverlay = (props) => {
     setPayload((prev) => ({
       firstName: row.firstName,
       lastName: row.lastName,
-      preferredName: preferredNameRef.current.value,
-      preferredPreset: presetRef.current.value,
+      preferredName: preferredNameRef.current.value ? preferredNameRef.current.value : row.preferredName,
+      preferredPreset: presetRef.current.value ? presetRef.current.value : row.preferredPreset,
       preferredSpeed: +speedRef.current.value,
       active: row.active,
     }));
@@ -35,14 +35,14 @@ export const EditOverlay = (props) => {
   };
 
   const handleSaveButton = () => {
-    setPayload({
+    setPayload((prev) => ({
       firstName: row.firstName,
       lastName: row.lastName,
-      preferredName: preferredNameRef.current.value,
-      preferredPreset: presetRef.current.value,
+      preferredName: preferredNameRef.current.value ? preferredNameRef.current.value : row.preferredName,
+      preferredPreset: presetRef.current.value ? presetRef.current.value : row.preferredPreset,
       preferredSpeed: +speedRef.current.value,
       active: row.active,
-    });
+    }));
     setIsSave(!isSave);
   };
 

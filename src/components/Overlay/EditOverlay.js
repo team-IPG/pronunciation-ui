@@ -119,7 +119,7 @@ export const EditOverlay = (props) => {
               name="select-speed"
               id="select-speed"
             >
-              <option>{row.preferredSpeed}</option>
+              <option>{"Select dropdown ..."}</option>
               {resources &&
                 resources["preferredSpeed"].map((entry, key) => (
                   <option key={key} value={entry.value}>

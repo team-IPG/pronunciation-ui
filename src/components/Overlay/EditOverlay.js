@@ -47,10 +47,10 @@ export const EditOverlay = (props) => {
   };
 
   useEffect(() => {
-    if (isSave || isTest) {
+    if (isSave) {
       updateNameById(payload);
     }
-  }, [isSave, payload, isTest]);
+  }, [isSave]);
 
   return (
     <div>
@@ -98,7 +98,7 @@ export const EditOverlay = (props) => {
               id="select-country"
             >
               {console.log("entry: ", row)}
-              <option>{resources["preferredPreset"].find(item => item.value === row.preferredPreset).key}</option>
+              <option>{"Select dropdown ..."}</option>
               {resources &&
                 resources["preferredPreset"].map((entry, key) => (
                   <option key={key} value={entry.value}>

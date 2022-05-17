@@ -12,9 +12,9 @@ const GetStarted = () => {
 
   useEffect(() => {
         if(fullname !== "" && fullname.includes(" ")){
-          let firstName = fullname.split(" ")[0]; 
-          let lastName = fullname.split(" ")[1];
-          fetchNameById(setNames, {firstName, lastName})
+          let firstname = fullname.split(" ")[0]; 
+          let lastname = fullname.split(" ")[1];
+          fetchNameById(setNames, {firstname, lastname})
         }else if(fullname !== "" && !fullname.includes(" ")){
           fetchNamesByNames(setNames, fullname)
         }else{

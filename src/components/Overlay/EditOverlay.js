@@ -17,11 +17,12 @@ export const EditOverlay = (props) => {
 
   const onTest = () => {
     setPayload((prev) => ({
+      id: row.id,
       firstName: row.firstName,
       lastName: row.lastName,
       preferredName: preferredNameRef.current.value ? preferredNameRef.current.value : row.preferredName,
       preferredPreset: presetRef.current.value ? presetRef.current.value : row.preferredPreset,
-      preferredSpeed: +speedRef.current.value,
+      preferredSpeed: speedRef.current.value ?  speedRef.current.value : row.preferredSpeed,
       active: row.active,
     }));
     setIsTest((prev) => true);
@@ -36,11 +37,12 @@ export const EditOverlay = (props) => {
 
   const handleSaveButton = () => {
     setPayload((prev) => ({
+      id: row.id,
       firstName: row.firstName,
       lastName: row.lastName,
       preferredName: preferredNameRef.current.value ? preferredNameRef.current.value : row.preferredName,
       preferredPreset: presetRef.current.value ? presetRef.current.value : row.preferredPreset,
-      preferredSpeed: +speedRef.current.value,
+      preferredSpeed: speedRef.current.value ?  speedRef.current.value : row.preferredSpeed,
       active: row.active,
     }));
     setIsSave(!isSave);
@@ -82,7 +84,8 @@ export const EditOverlay = (props) => {
               name="name"
               type="text"
               className="form-control"
-              placeholder={`${row.preferredName}`}
+
+              defaultValue={row.preferredName}
             />
           </div>
           <div className="input-group mb-4">
@@ -96,8 +99,9 @@ export const EditOverlay = (props) => {
               className="form-control"
               name="select-country"
               id="select-country"
+              defaultValue={row.preferredPreset}
             >
-              {console.log("entry: ", row)}
+              {console.log("row: ", row)}
               <option>{"Select dropdown ..."}</option>
               {resources &&
                 resources["preferredPreset"].map((entry, key) => (
@@ -118,6 +122,7 @@ export const EditOverlay = (props) => {
               className="form-control"
               name="select-speed"
               id="select-speed"
+              defaultValue={row.preferredSpeed}
             >
               <option>{"Select dropdown ..."}</option>
               {resources &&

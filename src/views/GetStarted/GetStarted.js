@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Search } from "../../components/Search/Search";
 import { Table } from "../../components/Table/Table";
 import {
-  fetchNamesByNames,
-  fetchNameById
+  fetchNamesByNames //,
+//  fetchNameById
 } from "../../apis/name-apis/name-services";
 
 const GetStarted = () => {
@@ -11,11 +11,12 @@ const GetStarted = () => {
   const [names, setNames] = useState([]);
 
   useEffect(() => {
-        if(fullname !== "" && fullname.includes(" ")){
-          let firstname = fullname.split(" ")[0]; 
-          let lastname = fullname.split(" ")[1];
-          fetchNameById(setNames, {firstname, lastname})
-        }else if(fullname !== "" && !fullname.includes(" ")){
+//        if(fullname !== "" && fullname.includes(" ")){
+//          let firstname = fullname.split(" ")[0];
+//          let lastname = fullname.split(" ")[1];
+//          fetchNameById(setNames, {firstname, lastname})
+//        }else
+        if(fullname !== ""){
           fetchNamesByNames(setNames, fullname)
         }else{
           setNames((prev) => []);

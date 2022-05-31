@@ -17,6 +17,7 @@ export const fetchNamesByNames = async (fun, name) => {
 export const fetchNameById = async (fun, {firstname, lastname}) => {
     if(firstname === "" || lastname === "") return; 
     let name = firstname + "-" + lastname;
+    //let mname =
     let res = await api.get(`/employee/${name}`)
     .then((r) => {
         return r.data
@@ -27,7 +28,8 @@ export const fetchNameById = async (fun, {firstname, lastname}) => {
 };
 
 export const updateNameById = async (content) => {
-    let name = content.firstName + "-" + content.lastName;
+    //let name = content.firstName + "-" + content.lastName;
+    let name = content.id;
     return await api.post(`/employeePreferences/${name}`, {...content})
     .then((r) => {
     }).catch((err) => {
